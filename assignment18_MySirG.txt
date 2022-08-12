@@ -1,0 +1,326 @@
+NAME-UDIT KHANDELWAL				ASSIGNMENT-18
+
+
+1. Write a function to calculate length of the string
+
+#include<stdio.h>
+#include<conio.h>
+int length_string(char s[]);
+int main()
+{
+    char str[100];
+    int len;
+    printf("enter string:");
+    fgets(str,100,stdin);
+    len=length_string(str);
+    printf("length of string is: %d",len);
+    getch();
+}
+int length_string(char s[])
+{
+    int i;
+    for(i=0;s[i];i++);
+    return i-1;
+}
+
+
+2. Write a function to reverse a string.
+
+#include<stdio.h>
+#include<conio.h>
+void reverse_string(char s[]);
+int main()
+{
+    char str[100];
+    printf("enter string:");
+    fgets(str,100,stdin);
+    printf("reverse string is:");
+    reverse_string(str);
+    getch();
+}
+void reverse_string(char s[])
+{
+    int i,len;
+    char rev[100];
+    for(i=0;s[i];i++);
+    len=i-1;
+    for(i=0;i<len;i++)
+    {
+        rev[i]=s[len-1-i];
+    }
+    printf("%s",rev);
+}
+
+
+3. Write a function to compare two strings.
+
+#include<stdio.h>
+#include<conio.h>
+void compare_string(char s1[],char s2[]);
+int main()
+{
+    char str1[100],str2[100];
+    printf("enter string1:");
+    fgets(str1,100,stdin);
+    printf("enter string2:");
+    fgets(str2,100,stdin);
+    compare_string(str1,str2);
+    getch();
+}
+void compare_string(char s1[],char s2[])
+{
+    int i,flag=0;
+    for(i=0;s1[i]!='\0'&&s2[i]!='\0';i++)
+    {
+        if(s1[i]!=s2[i])
+            flag=1;
+    }
+    if(flag==1)
+        printf("stings are not equal");
+    else
+        printf("strings are equal");
+}
+
+
+4. Write a function to transform string into uppercase
+
+#include<stdio.h>
+#include<conio.h>
+void upper_string(char s[]);
+int main()
+{
+    char str[100];
+    printf("enter string:");
+    fgets(str,100,stdin);
+    upper_string(str);
+    getch();
+}
+void upper_string(char s[])
+{
+    int i;
+    for(i=0;s[i];i++)
+    {
+        if(s[i]>='a'&&s[i]<='z')
+            s[i]-=32;
+    }
+    printf("upper string is: %s",s);
+}
+
+
+5. Write a function to transform a string into lowercase
+
+#include<stdio.h>
+#include<conio.h>
+void lower_string(char s[]);
+int main()
+{
+    char str[100];
+    printf("enter string:");
+    fgets(str,100,stdin);
+    lower_string(str);
+    getch();
+}
+void lower_string(char s[])
+{
+    int i;
+    for(i=0;s[i];i++)
+    {
+        if(s[i]>='A'&&s[i]<='Z')
+            s[i]+=32;
+    }
+    printf("lower string is: %s",s);
+}
+
+
+6. Write a function to check whether a given string is an alphanumeric string or not.
+(Alphanumeric string must contain at least one alphabet and one digit)
+
+#include<stdio.h>
+#include<conio.h>
+void alphanumeric_string(char s[]);
+int main()
+{
+    char str[100];
+    printf("enter string:");
+    fgets(str,100,stdin);
+    alphanumeric_string(str);
+    getch();
+}
+void alphanumeric_string(char s[])
+{
+    int i,a=0,d=0;
+    for(i=0;s[i];i++)
+    {
+        if((s[i]>='A'&&s[i]<='Z')||(s[i]>='a'&&s[i]<='z'))
+            a=1;
+        if(s[i]>='0'&&s[i]<='9')
+            d=1;
+    }
+    if(a==1&&d==1)
+        printf("string is alphanumeric");
+    else
+        printf("string is not alphanumeric");
+}
+
+
+7. Write a function to check whether a given string is palindrome or not.
+
+#include<stdio.h>
+#include<conio.h>
+void pallindrome_string(char s[]);
+int main()
+{
+    char str[100];
+    printf("enter string:");
+    fgets(str,100,stdin);
+    pallindrome_string(str);
+    getch();
+}
+void pallindrome_string(char s[])
+{
+    int i,len,flag=0;
+    for(i=0;s[i];i++);
+    len=i-1;
+    for(i=0;i<=len/2;i++)
+    {
+        if(s[i]!=s[len-1-i])
+        {
+            flag++;
+            break;
+        }
+    }
+    if(flag==0)
+        printf("string is pallindrome");
+    else
+        printf("string is not pallindrome");
+}
+
+
+8. Write a function to count words in a given string
+
+#include<stdio.h>
+#include<conio.h>
+int count_words(char s[]);
+int main()
+{
+    char str[100];
+    int word;
+    printf("enter string:");
+    fgets(str,100,stdin);
+    word=count_words(str);
+    printf("numbers of words in string is:%d",word);
+    getch();
+}
+int count_words(char s[])
+{
+    int i,len,words=1;
+    for(i=0;s[i];i++);
+    len=i-1;
+    for(i=0;i<len;i++)
+    {
+        if(s[i]==' '&&s[i+1]!=' ')
+        {
+            words++;
+        }
+    }
+    return words;
+}
+
+
+9. Write a function to reverse a string word wise. (For example if the given string is
+“Mysirg Education Services” then the resulting string should be “Services Education
+Mysirg” )
+
+#include<stdio.h>
+#include<conio.h>
+
+void reverse_word(char str[],int,int);
+void reverse(char str[],int,int);
+void reverse_letter(char str[],int,int);
+
+int main()
+{
+    char str[100];
+    int len,i;
+    printf("enter string:");
+    fgets(str,100,stdin);
+    for(i=0;str[i];i++);
+    str[i-1]=' ';
+    len=i-1;
+    reverse_word(str,0,len);
+    printf("%s",str);
+    getch();
+}
+
+void reverse_word(char str[],int start,int end)
+{
+    reverse(str,start,end);
+    reverse_letter(str,start,end);
+}
+
+void reverse_letter(char str[],int start,int end)
+{
+    int s,e;
+    for(s=e=start;e<end;e++)
+    {
+        if(str[e]==' ')
+            continue;
+        s=e;
+        while(str[e]!=' '&&e<=end)
+        {
+            e++;
+        }
+        e--;
+        reverse(str,s,e);
+    }
+}
+
+void reverse(char str[],int start,int end)
+{
+    char temp;
+    while(start<end)
+    {
+        temp=str[start];
+        str[start]=str[end];
+        str[end]=temp;
+        start++;
+        end--;
+    }
+}
+
+
+10. Write a function to find the repeated character in a given string.
+
+#include<stdio.h>
+#include<conio.h>
+void repeated_char(char s[]);
+int main()
+{
+    char str[100];
+    printf("enter string:");
+    fgets(str,100,stdin);
+    repeated_char(str);
+    getch();
+}
+void repeated_char(char s[])
+{
+    int i,j,len,count=0;
+    for(i=0;s[i];i++);
+    len=i-1;
+    for(i=0;i<len-1;i++)
+    {
+       count=0;
+       for(j=i+1;j<len;j++)
+       {
+          if(s[i]==s[j]&&s[j]!=' '&&s[j]!='0')
+            {
+                count++;
+                s[j]='0';
+            }
+       }
+       if(count!=0)
+        printf("%c\n",s[i]);
+    }
+}
+
+
